@@ -1,6 +1,9 @@
 import express from "express";
 import env from "../config/env";
-import index from '../routes/index.route';
+import morgan from 'morgan';
+import index from "../routes/index.route";
+import product from "../routes/product.route";
+import category from "../routes/category.route";
 
 export class App {
   private app: express.Application;
@@ -20,10 +23,14 @@ export class App {
         extended: true,
       })
     );
+    this.app.use(morgan('dev'));
   }
   routes(): void {
-    /// Routes 
+    /// Routes
     this.app.use(env.api.prefix, index);
+    this.app.use(env.api.prefix, product);
+    this.app.use(env.api.prefix, category);
+
     /// catch 404 and forward to error handler
     this.app.use((req, res, next) => {
       const err: any = new Error("Not Found");
@@ -31,29 +38,26 @@ export class App {
       next(err);
     });
 
-    /// error handlers
-    this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-      /**
-       * Handle 401 thrown by express-jwt library
-       */
-      if (err.name === "UnauthorizedError") {
-        return res.status(err.status).send({ message: err.message }).end();
+    this.app.use(
+      (
+        err: any,
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+      ) => {
+        res.status(err.status || 500);
+        res.json({
+          errors: {
+            message: err.message,
+          },
+        });
       }
-      return next(err);
-    });
-    this.app.use( (err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-      res.status(err.status || 500);
-      res.json({
-        errors: {
-          message: err.message,
-        },
-      });
-    });
+    );
   }
 
   async listen() {
-      await this.app.listen(this.port);
-      console.log(`
+    await this.app.listen(this.port);
+    console.log(`
       ################################################
       🛡️  Server listening on port: ${this.port} 🛡️
       ################################################
