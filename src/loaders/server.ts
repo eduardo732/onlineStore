@@ -1,5 +1,6 @@
 import express from "express";
 import env from "../config/env";
+import index from '../routes/index.route';
 
 export class App {
   private app: express.Application;
@@ -22,6 +23,7 @@ export class App {
   }
   routes(): void {
     /// Routes 
+    this.app.use(env.api.prefix, index);
     /// catch 404 and forward to error handler
     this.app.use((req, res, next) => {
       const err: any = new Error("Not Found");

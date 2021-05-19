@@ -1,30 +1,30 @@
-import { App } from './server';
-import env from '../config/env';
-import { Sequelize } from 'sequelize-typescript';
+import { App } from "./server";
+import env from "../config/env";
+import { Sequelize } from "sequelize-typescript";
 
 export class SqlRepo {
-    private repo: Sequelize;
+  private repo: Sequelize;
 
-    constructor(){
-        this.repo = new Sequelize(
-            env.db.name,
-            env.db.user,
-            env.db.pass,
-            {
-                host: env.db.host,
-                dialect: 'mysql',
-            }
+  constructor() {
+    this.repo = new Sequelize(env.db.name, env.db.user, env.db.pass, {
+      host: env.db.host,
+      dialect: "mysql",
+      models: [process.cwd() + "/src/models/*.model.ts"],
+      modelMatch: (filename, member) => {
+        return (
+          filename.substring(0, filename.indexOf(".model")) ===
+          member.toLowerCase()
         );
-        
-    }
-    
-    authenticate(app: App): void {
-        this.repo
-            .authenticate()
-            .then(async () => {
-                await app.listen();
-            })
-            .catch(err => console.error(err));
-    }
+      },
+    });
+  }
 
+  authenticate(app: App): void {
+    this.repo
+      .authenticate()
+      .then(async () => {
+        await app.listen();
+      })
+      .catch((err) => console.error(err));
+  }
 }
