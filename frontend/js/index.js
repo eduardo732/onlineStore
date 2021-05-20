@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:4000/api/";
+const baseUrl = "/api/";
 const allProducts = "product/findAll";
 const allCategories = "category/findAll";
 const productsFromCategory = "category/products";
