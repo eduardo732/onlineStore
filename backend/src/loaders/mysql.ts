@@ -22,8 +22,8 @@ export class SqlRepo {
   authenticate(app: App): void {
     this.repo
       .authenticate()
-      .then(async () => {
-        await app.listen();
+      .then(() => {
+        app.listen();
       })
       .catch((err) => console.error(err));
   }
