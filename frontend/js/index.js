@@ -66,7 +66,9 @@ const filter = async () => {
   }
   window.scrollTo(0, 0);
 };
-
+/**
+ * Category Row Zone
+ */
 const getCategories = async () => {
   const categories = await getData(baseUrl + allCategories);
   categories.forEach((item) => {
@@ -75,7 +77,10 @@ const getCategories = async () => {
     }')">${item.name.toUpperCase()}</button>  `;
   });
 };
-
+/**
+ * 
+ * Show products from categories 
+ */
 const showItems = async (item) => {
   const data = await getData(baseUrl + productsFromCategory);
   const category = data.find((element) => element.name === item);
