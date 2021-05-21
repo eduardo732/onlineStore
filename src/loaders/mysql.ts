@@ -16,8 +16,7 @@ export class SqlRepo {
   }
 
   intit() {
-    this.repo.addModels([Product]);
-    this.repo.addModels([Category]);
+    this.repo.addModels([Product, Category]);
   }
 
   authenticate(app: App): void {
