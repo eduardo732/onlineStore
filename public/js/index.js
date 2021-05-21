@@ -1,3 +1,4 @@
+//Para fines locales cambiar baseUrl a http://localhost:port/api/
 const baseUrl = "/api/";
 const allProducts = "product/findAll";
 const allCategories = "category/findAll";
