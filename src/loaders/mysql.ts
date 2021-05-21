@@ -12,6 +12,7 @@ export class SqlRepo {
       host: env.db.host,
       dialect: "mysql",
     });
+    this.intit();
   }
 
   intit() {
