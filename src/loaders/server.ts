@@ -1,6 +1,7 @@
 import express from "express";
 import env from "../config/env";
 import morgan from 'morgan';
+import path from 'path';
 import index from "../routes/index.route";
 import product from "../routes/product.route";
 import category from "../routes/category.route";
@@ -24,6 +25,7 @@ export class App {
       })
     );
     this.app.use(morgan('dev'));
+    this.app.use('/', express.static(path.join(__dirname, '/public/index.html')));
     this.app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
