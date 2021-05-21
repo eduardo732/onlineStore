@@ -7,7 +7,8 @@
     "start": "node backend/dist/index.js",
     "postinstall": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"tsc -w\" \"nodemon backend/src/index.ts\""
+    "dev": "concurrently \"tsc -w\" \"nodemon backend/src/index.ts\"",
+    "deploy": "git add . && git commit -m Heroku && git push heroku"
   },
   "keywords": [],
   "author": "Eduardo Fuentes",
