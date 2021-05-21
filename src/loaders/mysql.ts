@@ -9,7 +9,7 @@ export class SqlRepo {
     this.repo = new Sequelize(env.db.name, env.db.user, env.db.pass, {
       host: env.db.host,
       dialect: "mysql",
-      models: [process.cwd() + "/src/models/*.model.ts"],
+      models: [__dirname + "/src/models/*.model.ts"],
       modelMatch: (filename, member) => {
         return (
           filename.substring(0, filename.indexOf(".model")) ===
