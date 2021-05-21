@@ -54,8 +54,11 @@ Categories SECTION
 */
 
 #categories {
-    margin: 20vh 0px 10px 0px;
+    margin-top: 20vh;
     text-align: center;
+}
+.btn {
+  margin: 8px auto;
 }
 
 /*
@@ -135,7 +138,7 @@ footer{
 }
 @media(max-width: 340px){
   #categories {
-    margin-top: 25vh;
+    margin-top: 40vh;
   }
   #products {
     margin-left: -25vw;
