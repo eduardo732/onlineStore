@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node backend/src/index.js",
-    "postinstall": "tsc",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"tsc -w\" \"nodemon backend/src/index.ts\"",
     "deploy": "git add . && git commit -m Heroku && git push heroku"
