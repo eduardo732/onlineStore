@@ -17,6 +17,10 @@ export class App {
     this.routes();
   }
 
+  get(): express.Application{
+    return this.app;
+  }
+
   middlewares(): void {
     this.app.use(express.json());
     this.app.use(
