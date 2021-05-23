@@ -10,5 +10,5 @@ describe("Products Routes", () => {
     const res = await request(app.get).get("/api/product/findAll");
     expect(res.status).toBe(200);
     done();
-  });
+  }, 10000);
 });
