@@ -25,10 +25,8 @@ export class SqlRepo {
     this.repo.addModels([Product, Category]);
   }
 
-  close(): void {
-    this.repo.close()
-      .then(() => console.log("Db closed"))
-      .catch(error => console.log(error));
+  getRepo(): Sequelize {
+    return this.repo;
   }
 
   authenticate(app: App): void {

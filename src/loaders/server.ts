@@ -1,4 +1,5 @@
 import express from "express";
+import http from 'http';
 import env from "../config/env";
 import morgan from 'morgan';
 import path from 'path';
@@ -9,6 +10,7 @@ import category from "../routes/category.route";
 export class App {
   private app: express.Application;
   private port: number;
+  private server!: http.Server;
 
   constructor(port: number) {
     this.app = express();
@@ -17,8 +19,12 @@ export class App {
     this.routes();
   }
 
-  get(): express.Application{
+  getApp(): express.Application{
     return this.app;
+  }
+
+  getServer(): http.Server{
+    return this.server;
   }
 
   middlewares(): void {
@@ -68,8 +74,8 @@ export class App {
     );
   }
 
-  async listen() {
-    await this.app.listen(this.port);
+  listen(){
+    this.server = this.app.listen(this.port);
     console.log(`
       ################################################
       🛡️  Server listening on port: ${this.port} 🛡️
