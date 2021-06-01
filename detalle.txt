@@ -1,0 +1,34 @@
+Bsale Test
+
+Proyecto realizado para Bsale, consiste en simular una tienda online que despliegue productos.
+
+Con respecto al autocompletado, se realiza con los nombres de los items, sin embargo al hacer click en el boton "Search"
+independiente sea el nombre exacto, se encuentran todas las coincidencias con la palabra o letras escritas.
+Esta funcionalidad fue cambiada al backend, para dejar menos lógica de negocio en la parte del cliente.
+
+En la parte superior de la pagina encontramos todas las categorías de productos que existen. Al hacer click en una de ellas,
+se muestran los productos pertenecientes a dicha categoría.
+
+El diseño de la página esta hecha de manera responsive, por lo que se puede acceder desde cualquier dispositivo.
+
+En cuanto a la estructura del proyecto, primordialmente se había separado en 2 carpetas distintas, "Backend" y "Frontend", pero para
+deployar en 1 solo servidor tomé la decisión de dejar el front en la carpeta public del proyecto.
+Sin embargo si se quisiera separar basta con cambiar las rutas del archivo index.js y subir de manera aparte el front en Heroku o bien Netlify.
+
+DETALLE API REST.
+
+La Api fue realizada con NodeJs y Express, a esto se le suma Typescript para un mayor control en cuanto a código.
+Esta API esta conectada a una base de datos de la empresa Bsael, en donde se ocupan 2 tablas, "producto" y "categoria".
+Para manejar esta api se realizo una arquitectura MVC, en donde los modelos se controlaron con un ORM llamado sequelize,
+Con este ORM se evitan hacer consultas directas a la base de datos y brinda herramientas para controlar de mejor manera el manejo de los datos.
+Luego de Adquirir los datos con este ORM se pasan al controllador, para brindar la lógica necesaria y posteriormente entregar los datos necesarios a la vista,
+con rutas definidas para cada endpoint.
+
+DETALLE FRONT.
+
+Para el front se utilizó un par de botones y cards de bootstrap, para darle un diseño apropiado a la vista,
+fuera de eso los estilos se realizaron con css puro.
+En cuanto a la lógica del front, se utilizó fetch para solicitar los datos correspondientes a la Api.
+Se realizó un fetch de tipo get, para obtener los productos y otra de tipo post para enviar la palabra del buscador 
+y que la api devolviera las coincidencias encontradas.
+ 

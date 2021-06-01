@@ -27,12 +27,6 @@ En la raiz del proyecto se identifican los siguientes archivos y carpetas:
     En /public se encuentra el Frontend hecho con html css y javascript.
     De aquí lo importante en recalcar es el archivo /public/js/index.js.
     Es en donde se encuentra la lógica del Front.
-    Aquí se visualizan funciones como:
-    - getData(): Utilizada para realizar fetch a la Api
-    - calculatePrice(): utilizada para calcular el descuento que tienen los productos.
-    - filter(): Utilizada para realizar la busqueda y cargar productos
-    - getCategories(): Utilizada para obtener las categorias existentes.
-    - showItems(): Utilizada para visualizar productos segun su categoria.
 
     Por otro lado en la carpeta /src se encuentra el backend en la cual se distingue lo siguiente:
     - config: Se definen las variables de entorno.
