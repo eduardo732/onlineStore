@@ -1,5 +1,5 @@
 //dev baseUrl http://localhost:port/api/
-const baseUrl = "http://localhost:4000/api/";
+const baseUrl = "/api/";
 const allProducts = "product/findAll";
 const searcher = "product/searcher";
 const allCategories = "category/findAll";
