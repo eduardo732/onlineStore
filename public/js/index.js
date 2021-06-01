@@ -247,4 +247,5 @@ btnForm.addEventListener("click", async () => {
   });
   validateDiv(productsDiv);
   window.scrollTo(0, 0);
+  inputForm.value='';
 });
