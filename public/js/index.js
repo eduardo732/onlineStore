@@ -1,6 +1,7 @@
-//Para fines locales cambiar baseUrl a http://localhost:port/api/
+//dev baseUrl http://localhost:port/api/
 const baseUrl = "/api/";
 const allProducts = "product/findAll";
+const searcher = "product/searcher";
 const allCategories = "category/findAll";
 const productsFromCategory = "category/products";
 
@@ -12,7 +13,28 @@ const getData = (url) => {
         if (data.status === 200) {
           resolve(data.json());
         } else {
-          resolve(data.statusTex);
+          resolve(data.statusText);
+        }
+      })
+      .catch((err) => resolve(err));
+  });
+};
+
+const postData = (url, word) => {
+  return new Promise((resolve) => {
+    fetch(url, {
+      method: 'POST',
+      body: { word: word },
+      headers: {
+      'Content-Type': 'application/json'
+      }
+    })
+      .then((data) => {
+        console.log(data);
+        if (data.status === 200) {
+          resolve(data.json());
+        } else {
+          resolve(data.statusText);
         }
       })
       .catch((err) => resolve(err));
@@ -25,6 +47,7 @@ const getData = (url) => {
  * Searcher zone
  */
 const inputForm = document.getElementById("inputForm");
+const btnForm = document.getElementById("btn");
 const productsDiv = document.getElementById("products");
 const navCat = document.getElementById("categories");
 
@@ -79,8 +102,8 @@ const getCategories = async () => {
   });
 };
 /**
- * 
- * Show products from categories 
+ *
+ * Show products from categories
  */
 const showItems = async (item) => {
   const data = await getData(baseUrl + productsFromCategory);
@@ -105,6 +128,13 @@ const showItems = async (item) => {
   });
 };
 
-inputForm.addEventListener("keyup", filter);
-filter();
+//inputForm.addEventListener("keyup", filter);
+//filter();
+btnForm.addEventListener("click", async () => {
+  if (!inputForm.value) return alert("You must write a word to search");
+  const resp = await postData(baseUrl + searcher, inputForm.value);
+  resp.forEach((item) => {
+    console.log(item);
+  });
+});
 getCategories();

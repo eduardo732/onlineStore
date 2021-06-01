@@ -36,8 +36,13 @@ header {
   color: #A0A0A0;
 }
 .searcher {
-  margin: 4vh 0px 0px 0vh;
-  width: 500px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: 400px;
+}
+#btn{
+  margin-left: 5px;
 }
 #icon {
     display:flex;
@@ -103,11 +108,6 @@ footer{
   }
 }
 
-@media(max-width: 950px){
-  .searcher{
-    width: 200px;
-  }
-}
 
 @media(max-width: 785px){
   #products {
@@ -115,7 +115,7 @@ footer{
     margin-left: 13vw;
   }
   .searcher {
-    width: 150px;
+    width: 250px;
   }
 }
 
@@ -135,11 +135,12 @@ footer{
   #products {
     margin-left: -15vw;
   }
-}
-@media(max-width: 340px){
   #categories {
     margin-top: 40vh;
   }
+}
+@media(max-width: 340px){
+  
   #products {
     margin-left: -25vw;
   }

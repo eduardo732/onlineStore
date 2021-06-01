@@ -1,8 +1,9 @@
 import express from "express";
-import http from 'http';
+import http from "http";
+import cors from "cors";
 import env from "../config/env";
-import morgan from 'morgan';
-import path from 'path';
+import morgan from "morgan";
+import path from "path";
 import index from "../routes/index.route";
 import product from "../routes/product.route";
 import category from "../routes/category.route";
@@ -19,30 +20,34 @@ export class App {
     this.routes();
   }
 
-  getApp(): express.Application{
+  getApp(): express.Application {
     return this.app;
   }
 
-  getServer(): http.Server{
+  getServer(): http.Server {
     return this.server;
   }
 
   middlewares(): void {
+    // this.app.use(cors());
+    this.app.use(function (req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+      res.header(
+        "Access-Control-Allow-Headers",
+        "X-Requested-With, Content-Type"
+      );
+      next();
+    });
     this.app.use(express.json());
     this.app.use(
       express.urlencoded({
         extended: true,
       })
     );
-    this.app.use(morgan('dev'));
-    this.app.use('/', express.static(path.join(process.cwd(), '/public/')));
-    this.app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
+    this.app.use(morgan("dev"));
+    this.app.use("/", express.static(path.join(process.cwd(), "/public/")));
+    
   }
   routes(): void {
     /// Routes
@@ -74,7 +79,7 @@ export class App {
     );
   }
 
-  listen(){
+  listen() {
     this.server = this.app.listen(this.port);
     console.log(`
       ################################################
